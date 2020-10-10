@@ -46,12 +46,19 @@ void generateNextKey(uint64_t* validKey, key_t2 key){
 	return;
 }
 
-void printKey(key_t2 key){
+void printKey(key_t2 key, FILE* fp){
 	int i;
-	for(i = 0 ; i < 8 ; i++){
-		printf("%x ", key[i] & 0xff);
+	if(fp == NULL){
+		for(i = 0 ; i < 8 ; i++){
+			printf("%02x ", key[i] & 0xff);
+		}
+		printf("\n");
+	} else {
+		for(i = 0 ; i < 8 ; i++){
+			fprintf(fp, "%02x ", key[i] & 0xff);
+		}
+		fprintf(fp, "\n");
 	}
-	printf("\n");
 
 	return;
 }
